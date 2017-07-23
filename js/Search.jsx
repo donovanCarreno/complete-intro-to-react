@@ -2,13 +2,16 @@
 
 import React, { Component } from 'react'
 
-import preload from '../data'
-
 import ShowCard from './ShowCard'
+import Header from './Header'
 
 class Search extends Component {
   state = {
     searchTerm: ''
+  }
+
+  props: {
+    shows: Array<Show>
   }
 
   handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
@@ -18,17 +21,13 @@ class Search extends Component {
   render() {
     return (
       <div className='search'>
-        <header>
-          <h1>svideo</h1>
-          <input
-            onChange={this.handleSearchTermChange}
-            value={this.state.searchTerm}
-            type='text'
-            placeholder='Search'
-          />
-        </header>
+        <Header
+          showSearch
+          searchTerm={this.state.searchTerm}
+          handleSearchTermChange={this.handleSearchTermChange}
+        />
         <div>
-          {preload.shows
+          {this.props.shows
               .filter(show =>
                 `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
               )
