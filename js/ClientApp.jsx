@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { render } from 'react-dom'
-import Perf from 'react-addons-perf'
+import { BrowserRouter } from 'react-router-dom'
+// import Perf from 'react-addons-perf'
 
 /*
 Performance tools
@@ -17,7 +18,11 @@ Perf.start()
 import App from './App'
 
 const renderApp = () => {
-  render(<App />, document.getElementById('app'))
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('app'))
 }
 
 renderApp()
